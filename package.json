@@ -1,13 +1,14 @@
 {
   "name": "prope-studio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Portal web para Prope Studio",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dario Toro",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
