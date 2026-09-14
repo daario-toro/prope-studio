@@ -1,38 +1,45 @@
-console.log("🚀 INICIO DE script.js - VERSIÓN A PRUEBA DE FALLOS");
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("✅ DOMContentLoaded disparado correctamente");
-    
     const formulario = document.getElementById('contactForm');
-    console.log("🔍 Formulario encontrado:", formulario);
 
     if (!formulario) {
-        console.error("❌ ERROR CRÍTICO: No se encontró el formulario con id='contactForm' en el HTML");
-        alert("ERROR: El JavaScript no puede encontrar el formulario. Revisa el index.html");
         return;
     }
 
     formulario.addEventListener('submit', async function(evento) {
-        console.log("🛑 INTERCEPTANDO ENVÍO DEL FORMULARIO");
-        
-        // ESTA LÍNEA ES LA QUE EVITA QUE LA PÁGINA SE RECARGUE Y SUBA
-        evento.preventDefault(); 
-        console.log("✅ preventDefault() ejecutado. La página NO se recargará.");
-
-        alert("✅ ¡JAVASCRIPT ESTÁ FUNCIONANDO! El formulario fue interceptado correctamente.");
+        evento.preventDefault();
 
         const nombre = document.getElementById('nombre').value.trim();
         const email = document.getElementById('email').value.trim();
         const telefono = document.getElementById('telefono').value.trim();
         const mensaje = document.getElementById('mensaje').value.trim();
 
+        // Validación de campos obligatorios
         if (nombre === "" || email === "" || mensaje === "") {
-            alert("⚠️ Por favor, completa todos los campos obligatorios.");
+            alert("Por favor, completa todos los campos obligatorios.");
             return;
         }
 
+        // Validación de formato de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Por favor, ingresa un correo electrónico válido.");
+            return;
+        }
+
+        // Validación de longitud mínima del mensaje
+        if (mensaje.length < 10) {
+            alert("El mensaje debe tener al menos 10 caracteres.");
+            return;
+        }
+
+        // Deshabilitar el botón para evitar envíos duplicados
+        const boton = formulario.querySelector('button[type="submit"]');
+        const textoOriginal = boton.textContent;
+        boton.textContent = "Enviando...";
+        boton.disabled = true;
+
         try {
-            console.log("1️⃣ Intentando guardar en MongoDB...");
+            // 1. Guardar en MongoDB (Backend)
             const respuestaBD = await fetch('/api/contacto', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -40,14 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const datosBD = await respuestaBD.json();
-            console.log("Respuesta del servidor:", datosBD);
 
             if (!datosBD.success) {
-                alert("⚠️ Error en el servidor: " + datosBD.message);
+                alert("Ocurrió un error al guardar el mensaje. Por favor, intenta nuevamente.");
+                boton.textContent = textoOriginal;
+                boton.disabled = false;
                 return;
             }
 
-            console.log("2️⃣ Intentando enviar correo con EmailJS...");
+            // 2. Enviar correo vía EmailJS (Frontend)
             const templateParams = {
                 nombre: nombre,
                 email: email,
@@ -56,14 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             await emailjs.send('service_im7jni9', 'template_cj7v56p', templateParams);
-            console.log("✅ Correo enviado exitosamente vía EmailJS");
 
-            alert("🎬 ¡Mensaje enviado con éxito! En Prope Studio nos pondremos en contacto contigo pronto.");
+            // Éxito total
+            alert("Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.");
             formulario.reset();
 
         } catch (error) {
-            console.error("❌ ERROR DURANTE EL PROCESO:", error);
-            alert("❌ Ocurrió un error. Revisa la consola (F12) para más detalles.");
+            alert("Ocurrió un error al enviar el mensaje. Por favor, intenta nuevamente.");
+        } finally {
+            boton.textContent = textoOriginal;
+            boton.disabled = false;
         }
     });
 });

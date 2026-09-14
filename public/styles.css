@@ -144,6 +144,15 @@ header {
     box-shadow: var(--shadow-md);
 }
 
+.btn-primary:disabled {
+    background: var(--color-gray);
+    border-color: var(--color-gray);
+    color: var(--color-gray-light);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
 /* ===== SECCIONES GENERALES ===== */
 section {
     padding: 6rem 2rem;
@@ -289,7 +298,6 @@ section {
     background: var(--color-secondary);
 }
 
-/* AQUÍ ESTABA EL CORTE, AHORA ESTÁ COMPLETO: */
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
@@ -322,7 +330,7 @@ footer {
     }
     
     .nav-links {
-        display: none; /* En una versión futura se puede agregar un menú hamburguesa */
+        display: none;
     }
     
     .navbar {

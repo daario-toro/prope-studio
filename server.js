@@ -70,7 +70,7 @@ app.post('/api/contacto', async (req, res) => {
     });
 
   } catch (error) {
-    console.error(' Error en /api/contacto:', error);
+    console.error('❌ Error en /api/contacto:', error);
     res.status(500).json({ 
       success: false, 
       message: 'Error interno del servidor al procesar la solicitud.' 
@@ -93,7 +93,7 @@ app.get('/api/health', (req, res) => {
 // ==========================================
 app.listen(PORT, () => {
   console.log('🚀 ========================================');
-  console.log(` Servidor corriendo en puerto ${PORT}`);
+  console.log(`Servidor corriendo en puerto ${PORT}`);
   console.log(`📁 Archivos estáticos: ${path.join(__dirname, 'public')}`);
   console.log('========================================');
 });
