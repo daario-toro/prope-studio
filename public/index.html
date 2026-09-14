@@ -19,18 +19,18 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header class="header-main">
         <nav class="navbar">
             <div class="logo">
                 <a href="#inicio">
-                    <img src="img/logo-prope.png" alt="Prope Studio - Proyectos con Personalidad" class="logo-img">
+                    <img src="img/logo-prope.png" alt="Prope Studio" class="logo-img">
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#portafolio">Portafolio</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -38,33 +38,40 @@
     <!-- Sección Inicio -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h2>Transformamos Ideas en Realidad Audiovisual</h2>
-            <p>Productora profesional especializada en contenido de alto impacto</p>
+            <h1 class="hero-title">
+                Transformamos Ideas en 
+                <span class="text-gradient">Realidad Audiovisual</span>
+            </h1>
+            <p class="hero-subtitle">Productora profesional especializada en contenido de alto impacto</p>
             <a href="#contacto" class="btn-primary">Cotiza tu Proyecto</a>
         </div>
+        <div class="hero-decoration"></div>
     </section>
 
     <!-- Sección Servicios -->
     <section id="servicios" class="services">
-        <h2 class="section-title">Nuestros Servicios</h2>
+        <h2 class="section-title">
+            <span class="title-line">Nuestros</span>
+            <span class="title-line title-accent">Servicios</span>
+        </h2>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">🎬</div>
+                <div class="service-icon service-icon-1">🎬</div>
                 <h3>Producción Audiovisual</h3>
                 <p>Creación de videos corporativos, comerciales y contenido para redes sociales.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">📸</div>
+                <div class="service-icon service-icon-2">📸</div>
                 <h3>Fotografía Profesional</h3>
                 <p>Sesiones fotográficas para productos y eventos especiales.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">✏️</div>
+                <div class="service-icon service-icon-3">✏️</div>
                 <h3>Post-Producción</h3>
                 <p>Edición profesional, corrección de color y efectos visuales.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">📱</div>
+                <div class="service-icon service-icon-4">📱</div>
                 <h3>Contenido Digital</h3>
                 <p>Estrategia y creación de contenido para redes sociales.</p>
             </div>
@@ -73,29 +80,41 @@
 
     <!-- Sección Portafolio -->
     <section id="portafolio" class="portfolio">
-        <h2 class="section-title">Portafolio</h2>
+        <h2 class="section-title">
+            <span class="title-line">Portafolio</span>
+            <span class="title-line title-accent">Destacado</span>
+        </h2>
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <div class="portfolio-placeholder">Proyecto 1</div>
-                <h4>Video Corporativo</h4>
-                <p>Empresa Tecnológica</p>
+                <div class="portfolio-placeholder portfolio-1">Proyecto 1</div>
+                <div class="portfolio-info">
+                    <h4>Video Corporativo</h4>
+                    <p>Empresa Tecnológica</p>
+                </div>
             </div>
             <div class="portfolio-item">
-                <div class="portfolio-placeholder">Proyecto 2</div>
-                <h4>Campaña Publicitaria</h4>
-                <p>Marca de Ropa</p>
+                <div class="portfolio-placeholder portfolio-2">Proyecto 2</div>
+                <div class="portfolio-info">
+                    <h4>Campaña Publicitaria</h4>
+                    <p>Marca de Ropa</p>
+                </div>
             </div>
             <div class="portfolio-item">
-                <div class="portfolio-placeholder">Proyecto 3</div>
-                <h4>Documental</h4>
-                <p>Cultura Local</p>
+                <div class="portfolio-placeholder portfolio-3">Proyecto 3</div>
+                <div class="portfolio-info">
+                    <h4>Documental</h4>
+                    <p>Cultura Local</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Sección Contacto -->
     <section id="contacto" class="contact">
-        <h2 class="section-title">Contáctanos</h2>
+        <h2 class="section-title">
+            <span class="title-line">Contáctanos</span>
+            <span class="title-line title-accent">Hablemos</span>
+        </h2>
         <div class="contact-container">
             <form id="contactForm" class="contact-form">
                 <div class="form-group">
@@ -114,20 +133,23 @@
                     <label for="mensaje">Mensaje:</label>
                     <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                <button type="submit" class="btn-primary btn-large">Enviar Mensaje</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer-main">
         <div class="footer-content">
-            <div class="footer-logo-circle">
-                <img src="img/logo-prope-dark.png" alt="Prope Studio" class="footer-logo-img">
+            <div class="footer-logo-wrapper">
+                <div class="footer-logo-circle">
+                    <img src="img/logo-prope-dark.png" alt="Prope Studio" class="footer-logo-img">
+                </div>
             </div>
+            
             <div class="footer-social">
-                <a href="https://www.instagram.com/propestudio.cl/" target="_blank" class="social-link instagram" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <a href="https://www.instagram.com/propestudio.cl/" target="_blank" class="social-link" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -135,7 +157,10 @@
                     <span>@propestudio.cl</span>
                 </a>
             </div>
-            <p>&copy; 2026 Prope Studio. Todos los derechos reservados.</p>
+            
+            <div class="footer-divider"></div>
+            
+            <p class="footer-copyright">&copy; 2026 Prope Studio. Todos los derechos reservados.</p>
             <p class="footer-credits">Página desarrollada por BullNetwork, contacto prof.dario.toro@gmail.com</p>
         </div>
     </footer>
