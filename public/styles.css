@@ -39,14 +39,15 @@ body {
     width: 100%;
     background: var(--color-negro);
     z-index: 1000;
-    border-bottom: 2px solid var(--color-naranja);
-    box-shadow: var(--shadow-md);
+    height: 120px;
+    overflow: visible;
 }
 
 .navbar {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.5rem 2rem;
+    height: 100%;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,12 +56,14 @@ body {
 .logo {
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 .logo a {
     display: flex;
     align-items: center;
     text-decoration: none;
+    height: 100%;
 }
 
 .logo-img {
@@ -585,8 +588,12 @@ section {
 
 /* ===== RESPONSIVE (Móviles) ===== */
 @media (max-width: 768px) {
+    .header-main {
+        height: 80px;
+    }
+    
     .navbar {
-        padding: 0.3rem 1.5rem;
+        padding: 0 1.5rem;
     }
     
     .logo-img {
@@ -637,6 +644,10 @@ section {
 }
 
 @media (max-width: 480px) {
+    .header-main {
+        height: 60px;
+    }
+    
     .logo-img {
         height: 100px;
     }
