@@ -37,29 +37,28 @@ connectDB();
 // ==========================================
 async function enviarCorreoWeb3Forms(datos) {
   try {
+    // Crear FormData en lugar de JSON
+    const formData = new FormData();
+    formData.append('access_key', '327fa647-8a2a-43ac-9f06-507f952c1848');
+    formData.append('from_name', 'Prope Studio - Formulario Web');
+    formData.append('subject', `Nuevo mensaje de ${datos.nombre}`);
+    formData.append('name', datos.nombre);
+    formData.append('email', datos.email);
+    formData.append('phone', datos.telefono || 'No especificado');
+    formData.append('message', datos.mensaje);
+    formData.append('replyto', datos.email);
+
     const respuesta = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        access_key: '327fa647-8a2a-43ac-9f06-507f952c1848',
-        from_name: 'Prope Studio - Formulario Web',
-        subject: `Nuevo mensaje de ${datos.nombre}`,
-        name: datos.nombre,
-        email: datos.email,
-        phone: datos.telefono || 'No especificado',
-        message: datos.mensaje,
-        replyto: datos.email // Para que puedas responder directamente
-      })
+      body: formData
+      // NO especificar Content-Type - el navegador lo hará automáticamente con FormData
     });
     
     const resultado = await respuesta.json();
     
     if (respuesta.ok && resultado.success) {
       console.log(`📧 Correo enviado exitosamente a contacto@propestudio.cl`);
-      console.log(`📋 Datos: De ${datos.nombre} (${datos.email})`);
+      console.log(` Datos: De ${datos.nombre} (${datos.email})`);
       return true;
     } else {
       console.error('⚠️ Web3Forms respondió con error:', resultado);
@@ -145,7 +144,6 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
   console.log('🚀 ========================================');
   console.log(` Servidor corriendo en puerto ${PORT}`);
-  console.log(`🌐 URL: http://localhost:${PORT}`);
   console.log(`📁 Archivos estáticos: ${path.join(__dirname, 'public')}`);
-  console.log(' ========================================');
+  console.log('========================================');
 });
