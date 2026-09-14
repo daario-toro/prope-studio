@@ -289,6 +289,43 @@ section {
     background: var(--color-secondary);
 }
 
+/* AQUÍ ESTABA EL CORTE, AHORA ESTÁ COMPLETO: */
 .form-group input:focus,
 .form-group textarea:focus {
-   
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.contact-form button {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    text-align: center;
+    padding: 2rem;
+}
+
+.footer-content p {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+/* ===== RESPONSIVE (Móviles) ===== */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links {
+        display: none; /* En una versión futura se puede agregar un menú hamburguesa */
+    }
+    
+    .navbar {
+        justify-content: center;
+    }
+}
