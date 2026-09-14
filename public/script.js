@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.getElementById('contactForm');
     let intentosEnvio = 0;
-    let formularioValido = false;
 
     if (formulario) {
         formulario.addEventListener('submit', async function(evento) {
@@ -12,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const telefono = document.getElementById('telefono').value.trim();
             const mensaje = document.getElementById('mensaje').value.trim();
 
+            // Validaciones
             if (nombre === "" || email === "" || mensaje === "") {
                 alert("⚠️ Por favor, completa todos los campos obligatorios.");
                 return;
@@ -30,28 +30,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 intentosEnvio = intentosEnvio + 1;
-                console.log("Enviando datos al servidor...");
+                console.log("Enviando datos al servidor y correo...");
                 
-                const respuesta = await fetch('/api/contacto', {
+                // 1. Guardar en MongoDB (Backend)
+                const respuestaBD = await fetch('/api/contacto', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ nombre, email, telefono, mensaje })
                 });
 
-                const datos = await respuesta.json();
+                const datosBD = await respuestaBD.json();
 
-                if (datos.success) {
-                    formularioValido = true;
-                    console.log("✅ Éxito. Intento número: " + intentosEnvio);
-                    alert("🎬 ¡Mensaje enviado con éxito! En Prope Studio nos pondremos en contacto contigo pronto.");
-                    formulario.reset();
-                    formularioValido = false;
-                } else {
-                    alert("⚠️ Error del servidor: " + datos.message);
+                if (!datosBD.success) {
+                    alert("⚠️ Error al guardar en la base de datos: " + datosBD.message);
+                    return;
                 }
+
+                // 2. Enviar Correo (Frontend con EmailJS)
+                const templateParams = {
+                    nombre: nombre,
+                    email: email,
+                    telefono: telefono || 'No especificado',
+                    mensaje: mensaje
+                };
+
+                // Llamada a EmailJS usando tus IDs reales
+                await emailjs.send('service_im7jni9', 'template_cj7v56p', templateParams);
+                console.log("✅ Correo enviado exitosamente vía EmailJS");
+
+                // Éxito total
+                console.log("✅ Éxito. Intento número: " + intentosEnvio);
+                alert("🎬 ¡Mensaje enviado con éxito! En Prope Studio nos pondremos en contacto contigo pronto.");
+                formulario.reset();
+
             } catch (error) {
-                console.error("❌ Error de red:", error);
-                alert("❌ Error de conexión. Asegúrate de que el servidor Node.js esté corriendo.");
+                console.error("❌ Error:", error);
+                alert("❌ Ocurrió un error al enviar el mensaje. Por favor, intenta nuevamente.");
             }
         });
     }
