@@ -67,7 +67,7 @@ body {
 }
 
 .logo-img {
-    height: 300px;
+    height: 250px; /* Reducido de 300px a 250px */
     width: auto;
     max-width: 100%;
     display: block;
@@ -507,9 +507,16 @@ section {
     justify-content: center;
 }
 
+/* Estilo para el enlace que envuelve el círculo */
+.footer-logo-link {
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
 .footer-logo-circle {
-    width: 280px;
-    height: 280px;
+    width: 140px; /* Reducido a la mitad (antes 280px) */
+    height: 140px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--color-gris-oscuro) 0%, var(--color-negro) 100%);
     display: flex;
@@ -522,14 +529,14 @@ section {
     position: relative;
 }
 
-.footer-logo-circle:hover {
+.footer-logo-link:hover .footer-logo-circle {
     transform: scale(1.05);
     box-shadow: 0 0 60px rgba(255, 107, 53, 0.6);
 }
 
 .footer-logo-img {
-    width: 220px;
-    height: 220px;
+    width: 110px; /* Ajustado proporcionalmente (antes 220px) */
+    height: 110px;
     object-fit: contain;
     transition: var(--transition);
 }
@@ -597,7 +604,7 @@ section {
     }
     
     .logo-img {
-        height: 150px;
+        height: 120px; /* Ajustado proporcionalmente */
     }
     
     .nav-links {
@@ -633,13 +640,13 @@ section {
     }
     
     .footer-logo-circle {
-        width: 200px;
-        height: 200px;
+        width: 110px;
+        height: 110px;
     }
     
     .footer-logo-img {
-        width: 160px;
-        height: 160px;
+        width: 85px;
+        height: 85px;
     }
 }
 
@@ -649,7 +656,7 @@ section {
     }
     
     .logo-img {
-        height: 100px;
+        height: 90px;
     }
     
     .hero-title {
@@ -666,12 +673,12 @@ section {
     }
     
     .footer-logo-circle {
-        width: 160px;
-        height: 160px;
+        width: 90px;
+        height: 90px;
     }
     
     .footer-logo-img {
-        width: 120px;
-        height: 120px;
+        width: 70px;
+        height: 70px;
     }
 }
